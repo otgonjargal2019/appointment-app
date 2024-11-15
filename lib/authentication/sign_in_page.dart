@@ -45,8 +45,12 @@ class _SignInPageState extends State<SignInPage> {
           await googleUser.authentication;
 
       // Use the obtained idToken and accessToken as needed
+      print('Google googleUser---------------------- ${googleUser}');
+      print('Google auth---------------------- ${googleAuth}');
       String? idToken = googleAuth.idToken;
       String? accessToken = googleAuth.accessToken;
+      print('Google idToken---------------------- ${idToken}');
+      print('Google accessToken---------------------- ${accessToken}');
 
       // Call your backend API to sign in the user
       // Example: await apiService.signInWithGoogle(idToken);
@@ -66,10 +70,11 @@ class _SignInPageState extends State<SignInPage> {
 
       if (result.status == LoginStatus.success) {
         final AccessToken accessToken = result.accessToken!;
+        print('Facebook token---------------------- ${accessToken}');
         //print('Access Token: ${accessToken.token}');
 
         final userData = await FacebookAuth.instance.getUserData();
-        print('User Data: $userData');
+        print('Facebook user Data----------------------- $userData');
 
         Navigator.pushReplacementNamed(context, '/home');
       } else {
